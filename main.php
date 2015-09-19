@@ -84,7 +84,12 @@ if ($type !=NULL) {
 $file_id=$response["message"]["photo"][0]["file_id"];
 
 if ($file_id !=NULL) {
-$file_path=$response["message"]["photo"][0]["file_path"];
+//$file_path=$response["message"]["photo"][0]["file_path"];
+$telegramtk=""; // inserire il token
+$rawData = file_get_contents("https://api.telegram.org/bot".$telegramtk."/getFile?file_id=".$file_id);
+$obj=json_decode($rawData, true);
+$file_path=$obj["result"]["file_path"];
+
 $text="foto allegata";
 $risposta="ID dell'allegato: ".$file_id;
 
