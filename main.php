@@ -50,7 +50,7 @@ function start($telegram,$update)
 	$today = date("Y-m-d H:i:s");
 
 	if ($text == "/start") {
-		$reply = "Benvenuto. Per inviare una segnalazione, clicca Invia posizione dall'icona a forma di graffetta e aspetta 1 minuto. Quando ricevi la risposta automatica, puoi scrivere un testo descrittivo. Non sono ammesse foto o altri contenuti multimediali come Video o Suoni. In qualsiasi momento scrivendo /start ti ripeterò questo messaggio di benvenuto.";
+		$reply = "Benvenuto. Per inviare una segnalazione, clicca Invia posizione dall'icona a forma di graffetta e aspetta 1 minuto. Quando ricevi la risposta automatica, puoi scrivere un testo descrittivo o allegare un contenuto video foto audio ect. In qualsiasi momento scrivendo /start ti ripeterò questo messaggio di benvenuto. Declino ogni responsabilità dall'uso improprio di questo strumento e dei contenuti degli utenti. Tutte le info sono sui server Telegram, mentre in un database locale c'è traccia dei links degli allegati da te inviati";
 		$content = array('chat_id' => $chat_id, 'text' => $reply);
 		$telegram->sendMessage($content);
 			$log=$today. ";new chat started;" .$chat_id. "\n";
