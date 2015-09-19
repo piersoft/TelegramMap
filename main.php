@@ -70,6 +70,7 @@ function start($telegram,$update)
 			$response=$telegram->getData();
 
 $type=$response["message"]["video"]["file_id"];
+$text =$response["message"] ["text"];
 $risposta="";
 $file_name="";
 $file_path="";
@@ -77,20 +78,20 @@ $file_name="";
 
 if ($type !=NULL) {
   $file_id=$type;
-	$text="video allegato";
+$text="video allegato";
 	$risposta="ID dell'allegato:".$file_id;
 }
 
 $file_id=$response["message"]["photo"][0]["file_id"];
 
 if ($file_id !=NULL) {
-//$file_path=$response["message"]["photo"][0]["file_path"];
+
 $telegramtk=""; // inserire il token
 $rawData = file_get_contents("https://api.telegram.org/bot".$telegramtk."/getFile?file_id=".$file_id);
 $obj=json_decode($rawData, true);
 $file_path=$obj["result"]["file_path"];
-
-$text="foto allegata";
+$caption=$response["message"]["caption"];
+if ($caption != NULL) $text=$caption;
 $risposta="ID dell'allegato: ".$file_id;
 
 }
@@ -107,7 +108,7 @@ $risposta="ID dell'allegato:".$file_id;
 $typev=$response["message"]["voice"]["file_id"];
 if ($typev !=NULL){
 	$file_id=$typev;
-	$text="audio allegato";
+$text="audio allegato";
 	$risposta="ID dell'allegato:".$file_id;
 
 }
@@ -132,7 +133,7 @@ $first_name=$response["message"]["from"]["first_name"];
 		//comando errato
 		else{
 
-			 $reply = "Hai selezionato un comando non previsto";
+			 $reply = "Hai selezionato un comando non previsto. Ricordati che devi prima inviare la tua posizione";
 			 $content = array('chat_id' => $chat_id, 'text' => $reply);
 			 $telegram->sendMessage($content);
 			 $log=$today. ";wrong command sent;" .$chat_id. "\n";
