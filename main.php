@@ -68,7 +68,7 @@ function start($telegram,$update)
 		{
 
 			$response=$telegram->getData();
-		//  $file_id=implode(",",array($response["message"]["photo"][0]["file_id"]));
+	
 $type=$response["message"]["video"]["file_id"];
 $risposta="";
 $file_name="";
