@@ -72,19 +72,19 @@ function start($telegram,$update)
 $type=$response["message"]["video"]["file_id"];
 $risposta="";
 $file_name="";
-$file_path="";
+
 if ($type !=NULL) {
-$file_id=$type;
+  $file_id=$type;
 	$text="video allegato";
 	$risposta="ID dell'allegato:".$file_id;
-
 }
 else {
 $file_id=$response["message"]["photo"][0]["file_id"];
-	$file_path=$response["message"]["photo"][0]["file_path"];
+
 if ($file_id !=NULL) {
+$file_path=$response["message"]["photo"][0]["file_path"];
 $text="foto allegata";
-$risposta="ID dell'allegato:".$file_id;
+$risposta="ID dell'allegato: ".$file_id;
  }
 }
 $typed=$response["message"]["document"]["file_id"];
@@ -103,12 +103,13 @@ $first_name=$response["message"]["from"]["first_name"];
 			$statement = "UPDATE ".DB_TABLE_GEO ." SET text='".$text."',file_id='". $file_id ."',filename='". $file_name ."',first_name='". $first_name ."',file_path='". $file_path ."',username='". $username ."' WHERE bot_request_message ='".$reply_to_msg['message_id']."'";
 			print_r($reply_to_msg['message_id']);
 			$db->exec($statement);
-			$reply = "La segnalazione è stata Registrata. ".$risposta." Grazie! ";
+			$reply = "La segnalazione è stata Registrata.\n".$risposta." Grazie! ";
 			$content = array('chat_id' => $chat_id, 'text' => $reply);
 			$telegram->sendMessage($content);
 			$log=$today. ";information for maps recorded;" .$chat_id. "\n";
-
-			exec('sqlite3 -header -csv db.sqlite "select * from segnalazioni;" > map_data.csv');
+			$csv_path=dirname(__FILE__).'/./map_data.csv';
+			$db_path=dirname(__FILE__).'/./db.sqlite';
+			exec(' sqlite3 -header -csv '.$db_path.' "select * from segnalazioni;" > '.$csv_path. ' ');
 
 
 		}

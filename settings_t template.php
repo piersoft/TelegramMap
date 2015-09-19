@@ -8,6 +8,7 @@ define('LOG_FILE', 'telegram.log');
 
 // Your database
 $db_path=dirname(__FILE__).'/./db.sqlite';
+$csv_path=dirname(__FILE__).'/./map_data.csv';
 define ('DB_NAME', "sqlite:". $db_path);
 define('DB_TABLE',"user");
 define('DB_TABLE_GEO',"segnalazioni");
