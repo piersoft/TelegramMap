@@ -68,7 +68,7 @@ function start($telegram,$update)
 		{
 
 			$response=$telegram->getData();
-	
+
 $type=$response["message"]["video"]["file_id"];
 $risposta="";
 $file_name="";
@@ -78,14 +78,14 @@ if ($type !=NULL) {
 	$text="video allegato";
 	$risposta="ID dell'allegato:".$file_id;
 }
-else {
+
 $file_id=$response["message"]["photo"][0]["file_id"];
 
 if ($file_id !=NULL) {
 $file_path=$response["message"]["photo"][0]["file_path"];
 $text="foto allegata";
 $risposta="ID dell'allegato: ".$file_id;
- }
+
 }
 $typed=$response["message"]["document"]["file_id"];
 
@@ -96,6 +96,15 @@ $text="documento: ".$file_name." allegato";
 $risposta="ID dell'allegato:".$file_id;
 
 }
+
+$typev=$response["message"]["voice"]["file_id"];
+if ($typev !=NULL){
+	$file_id=$typev;
+	$text="audio allegato";
+	$risposta="ID dell'allegato:".$file_id;
+
+}
+
 $username=$response["message"]["from"]["username"];
 $first_name=$response["message"]["from"]["first_name"];
 
