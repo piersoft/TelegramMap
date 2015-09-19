@@ -72,6 +72,8 @@ function start($telegram,$update)
 $type=$response["message"]["video"]["file_id"];
 $risposta="";
 $file_name="";
+$file_path="";
+$file_name="";
 
 if ($type !=NULL) {
   $file_id=$type;
