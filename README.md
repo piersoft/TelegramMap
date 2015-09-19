@@ -31,4 +31,6 @@ Good Luck!
 V.1.1:
 Now the user can send photo, audio, video and docs. The unique file_ids go into db.sqlite
 getfiles.php = > insert file_id from db.sqlite for download attachments. only for backend because there is the Token of Bot in plain mode
+PUT Token in main.php in --> $telegramtk="" 
+PUT Token in getfiles.php --> $telegramtk=""
 
