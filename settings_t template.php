@@ -15,5 +15,11 @@ define('DB_TABLE_GEO',"segnalazioni");
 define('DB_CONF', 0666);
 define('DB_ERR', "errore database SQLITE");
 
+// Your Openstreetmap Query settings
+define('AROUND', 5000);						//Number of meters to calculate radius to search
+define('MAX', 30);							//max number of points to search
+//define('TAG','"amenity"="pharmacy"');
+
+
 
 ?>
